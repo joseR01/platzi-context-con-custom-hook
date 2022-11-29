@@ -1,66 +1,38 @@
-import { useState } from "react";
+import { useStore } from "./store/storeProvider";
 
 function App() {
-  const [stado1, setStado1] = useState("soy el estado1");
-  const [stado2, setStado2] = useState("soy el estado2");
-  const [stado3, setStado3] = useState("soy el estado3");
-  const [stado4, setStado4] = useState("soy el estado4");
   return (
     <>
-      <Fn1 stado1={stado1} stado2={stado2} stado3={stado3} stado4={stado4} />
+      <Fn1 />
     </>
   );
 }
 
-export default App;
+function Fn1() {
+  const { userState, userDispatch } = useStore();
 
-function Fn1({ stado1, stado2, stado3, stado4 }) {
+  const { user } = userState;
+  const { actualizarUser, crearUser, eliminarUser } = userDispatch;
+
+  console.log(user);
+  function handleEdit() {
+    const newObjeto = { cursos: 5 };
+    actualizarUser(newObjeto);
+    console.log("actualizando");
+  }
+  function handleCrear() {
+    crearUser("creando");
+  }
+  function handleEliminar() {
+    eliminarUser("elimianr");
+  }
   return (
     <>
       <h1>hoy el componente 1</h1>
-      {/* {stado1}
-      {stado2}
-      {stado3}
-      {stado4} */}
-      <Fn2 stado1={stado1} stado2={stado2} stado3={stado3} stado4={stado4} />
+      <button onClick={handleEdit}>edit</button>
+      <button onClick={handleCrear}>crear</button>
+      <button onClick={handleEliminar}>eliminar</button>
     </>
   );
 }
-function Fn2({ stado1, stado2, stado3, stado4 }) {
-  return (
-    <>
-      <h1>hoy el componente 2 </h1>
-
-      <Fn3 stado1={stado1} stado2={stado2} stado3={stado3} stado4={stado4} />
-    </>
-  );
-}
-function Fn3({ stado1, stado2, stado3, stado4 }) {
-  return (
-    <>
-      <h1>hoy el componente 3</h1>
-
-      <Fn4 stado1={stado1} stado2={stado2} stado3={stado3} stado4={stado4} />
-    </>
-  );
-}
-function Fn4({ stado1, stado2, stado3, stado4 }) {
-  return (
-    <>
-      <h1>hoy el componente 4</h1>
-
-      <Fn5 tado1={stado1} stado2={stado2} stado3={stado3} stado4={stado4} />
-    </>
-  );
-}
-function Fn5({ stado1, stado2, stado3, stado4 }) {
-  return (
-    <>
-      <h1>hoy el componente 5</h1>
-      {stado1}
-      {stado2}
-      {stado3}
-      {stado4}
-    </>
-  );
-}
+export default App;

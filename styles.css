@@ -1,0 +1,12 @@
+.container {
+  border: 1px solid;
+  border-color: blue;
+}
+
+.borderred {
+  border-color: rgb(255, 0, 0);
+}
+
+.bordergreen {
+  border-color: rgb(21, 255, 0);
+}
